@@ -1,17 +1,17 @@
-# SuperRecruit SDK
+# Narrowfield SDK
 
-Data contracts and plugin interfaces for building [SuperRecruit](https://github.com/insomniak68/superrecruit-desktop) integrations.
+Data contracts and plugin interfaces for building [Narrowfield](https://github.com/insomniak68/narrowfield) integrations.
 
 ## Install
 
 ```bash
-pip install superrecruit-sdk
+pip install narrowfield-sdk
 ```
 
 Or from source:
 
 ```bash
-pip install git+https://github.com/insomniak68/superrecruit-sdk.git
+pip install git+https://github.com/insomniak68/narrowfield-sdk.git
 ```
 
 ## What's in the box
@@ -32,7 +32,7 @@ pip install git+https://github.com/insomniak68/superrecruit-sdk.git
 ## Quick Start
 
 ```python
-from superrecruit import SourcePlugin, PluginInfo, JobImport, SkillDefinition
+from narrowfield import SourcePlugin, PluginInfo, JobImport, SkillDefinition
 
 class Plugin:
     def info(self):
@@ -63,7 +63,7 @@ See [docs/PLUGIN_SPEC.md](docs/PLUGIN_SPEC.md) for the full reference, including
 
 ## Example Plugins
 
-Check out [superrecruit-plugins](https://github.com/insomniak68/superrecruit-plugins) for reference implementations:
+Check out [narrowfield-plugins](https://github.com/insomniak68/narrowfield-plugins) for reference implementations:
 
 - **CSV** — Import jobs/candidates from CSV files
 - **Webhook** — POST screening decisions to any URL

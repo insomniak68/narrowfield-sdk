@@ -38,7 +38,7 @@ class PluginInfo:
 
 
 # ══════════════════════════════════════════════════════════════════
-# INPUT SPEC — Data flowing INTO SuperRecruit
+# INPUT SPEC — Data flowing INTO Narrowfield
 # ══════════════════════════════════════════════════════════════════
 
 @dataclass
@@ -91,7 +91,7 @@ class CandidateImport:
 
 
 # ══════════════════════════════════════════════════════════════════
-# OUTPUT SPEC — Data flowing OUT of SuperRecruit
+# OUTPUT SPEC — Data flowing OUT of Narrowfield
 # ══════════════════════════════════════════════════════════════════
 
 class DecisionOutcome(str, Enum):
@@ -130,7 +130,7 @@ class ScreeningDecision:
     skills_equivalent: list[dict[str, str]] = field(default_factory=list)  # [{"required": "X", "matched": "Y", "weight": 0.9}]
     recommended_assessments: list[str] = field(default_factory=list)  # Test IDs to send
     decided_at: str = ""             # ISO 8601
-    decided_by: str = "superrecruit" # "superrecruit" or screener name
+    decided_by: str = "narrowfield" # "narrowfield" or screener name
     candidate_external_id: str = ""  # For mapping back to source system
     position_external_id: str = ""
     metadata: dict[str, Any] = field(default_factory=dict)

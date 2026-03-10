@@ -1,11 +1,11 @@
-# SuperRecruit Plugin Spec
+# Narrowfield Plugin Spec
 
-Plugins connect SuperRecruit to external systems without coupling SR to any vendor. SR defines the data contracts; plugins implement adapters.
+Plugins connect Narrowfield to external systems without coupling SR to any vendor. SR defines the data contracts; plugins implement adapters.
 
 ## Architecture
 
 ```
-External Systems                SuperRecruit                    External Systems
+External Systems                Narrowfield                    External Systems
 ┌──────────────┐               ┌──────────────┐               ┌──────────────┐
 │ Greenhouse   │──┐            │              │            ┌──│ Slack        │
 │ Lever        │──┤  Source    │   Plugin     │   Sink     ├──│ Email        │
@@ -107,7 +107,7 @@ class ScreeningDecision:
     skills_equivalent: list[dict]    # [{"required": "X", "matched": "Y", "weight": 0.9}]
     recommended_assessments: list[str]
     decided_at: str                  # ISO 8601
-    decided_by: str                  # "superrecruit" or screener name
+    decided_by: str                  # "narrowfield" or screener name
     candidate_external_id: str = ""  # For mapping back
     position_external_id: str = ""
     metadata: dict = {}
@@ -131,7 +131,7 @@ class DecisionDetail:
 ```python
 # sr_myats/__init__.py
 
-from superrecruit import SourcePlugin, PluginInfo, JobImport, CandidateImport, SkillDefinition
+from narrowfield import SourcePlugin, PluginInfo, JobImport, CandidateImport, SkillDefinition
 
 class Plugin:
     """My ATS integration."""
@@ -182,7 +182,7 @@ class Plugin:
 ```python
 # sr_webhook/__init__.py
 
-from superrecruit import SinkPlugin, PluginInfo, ScreeningDecision
+from narrowfield import SinkPlugin, PluginInfo, ScreeningDecision
 import dataclasses, json
 
 class Plugin:
@@ -237,7 +237,7 @@ plugins:
 Place plugin packages in `plugins/`:
 
 ```
-superrecruit-desktop/
+narrowfield/
 ├── plugins/
 │   ├── myats/
 │   │   ├── __init__.py        # Contains Plugin class
@@ -249,7 +249,7 @@ superrecruit-desktop/
 ### Programmatic
 
 ```python
-from superrecruit.plugins import get_registry  # From the SR app, not the SDK
+from narrowfield import get_registry  # From the SR app, not the SDK
 
 registry = get_registry()
 registry.register_source(MyPlugin(), config={"api_key": "..."})

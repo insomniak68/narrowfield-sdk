@@ -1,6 +1,6 @@
 """Basic tests for SDK data models and protocols."""
 
-from superrecruit import (
+from narrowfield import (
     JobImport,
     CandidateImport,
     SkillDefinition,
