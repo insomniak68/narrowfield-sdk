@@ -25,6 +25,9 @@ classifiers = [
     "Topic :: Software Development :: Libraries",
 ]
 
+[tool.hatch.build.targets.wheel]
+packages = ["src/narrowfield"]
+
 [project.urls]
 Homepage = "https://github.com/insomniak68/narrowfield-sdk"
 Issues = "https://github.com/insomniak68/narrowfield-sdk/issues"
