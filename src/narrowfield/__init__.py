@@ -18,6 +18,7 @@ from .spec import (
     DecisionOutcome,
     PluginInfo,
     PluginError,
+    ConfigField,
 )
 
 __all__ = [
@@ -31,6 +32,7 @@ __all__ = [
     "DecisionOutcome",
     "PluginInfo",
     "PluginError",
+    "ConfigField",
 ]
 
 __version__ = "0.1.0"

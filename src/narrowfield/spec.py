@@ -136,6 +136,19 @@ class ScreeningDecision:
     metadata: dict[str, Any] = field(default_factory=dict)
 
 
+# ── Plugin configuration schema ──
+
+@dataclass
+class ConfigField:
+    """Describes a single configuration field for a plugin."""
+    name: str                        # Key in the config dict
+    type: str = "string"             # "string", "password", "url", "number", "boolean", "select"
+    required: bool = False
+    description: str = ""
+    default: Any = None
+    options: list[str] = field(default_factory=list)  # For "select" type
+
+
 # ══════════════════════════════════════════════════════════════════
 # PLUGIN INTERFACES
 # ══════════════════════════════════════════════════════════════════
@@ -146,7 +159,11 @@ class SourcePlugin(Protocol):
 
     Implement the methods relevant to your integration.
     Return empty lists for capabilities you don't support.
+
+    Set CONFIG_SCHEMA as a class attribute to declare required configuration fields.
     """
+
+    CONFIG_SCHEMA: list[ConfigField] = []
 
     def info(self) -> PluginInfo:
         """Return plugin metadata."""
@@ -187,7 +204,11 @@ class SinkPlugin(Protocol):
     """Interface for plugins that export decisions from SR.
 
     Implement the methods relevant to your integration.
+
+    Set CONFIG_SCHEMA as a class attribute to declare required configuration fields.
     """
+
+    CONFIG_SCHEMA: list[ConfigField] = []
 
     def info(self) -> PluginInfo:
         """Return plugin metadata."""
