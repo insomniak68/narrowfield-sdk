@@ -52,6 +52,18 @@ class SkillDefinition:
 
 
 @dataclass
+class FixedSkillDefinition:
+    """A skill asserted by an integration (not extracted from resume).
+
+    Fixed skills are stored at 100% confidence and preserved across re-evaluations.
+    """
+    name: str
+    category: str = "other"
+    evidence: str = ""               # Why the integration asserts this skill
+    source: str = "integration"      # 'integration' or 'manual'
+
+
+@dataclass
 class JobImport:
     """A job/position from an external system."""
     title: str
@@ -79,6 +91,7 @@ class CandidateImport:
     resume_bytes: bytes = b""        # Raw resume file (PDF, DOCX)
     resume_filename: str = ""        # Original filename
     skills: list[SkillDefinition] = field(default_factory=list)  # Pre-parsed skills from ATS
+    fixed_skills: list[FixedSkillDefinition] = field(default_factory=list)  # Permanent skills asserted by integration
     experience_years: int = 0
     current_title: str = ""
     current_company: str = ""
